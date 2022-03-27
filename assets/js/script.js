@@ -6,6 +6,7 @@ var scoreEl = document.querySelector('#score')
 var startingTime = 10
 var newTime = startingTime
 var intervalId
+var score = 0
 
 // // functions
 
@@ -15,7 +16,15 @@ function createQuestion() {
 }
 
 function gameOver() {
-    
+    clearInterval(intervalId)
+    var intitials = prompt('What are your initials?')
+    var data = {intitials: intitials, score: score}
+    localStorage.setItem('codeQuizChamp', JSON.stringify(data))
+
+    var playAgain = confirm('want to play again?')
+    if (playAgain) {
+        window.location.reload()
+    }
 }
 
 function updateTimer() {
@@ -23,7 +32,6 @@ function updateTimer() {
         newTime--;
         timerEl.innerHTML = 'Timer: ' + newTime;
         if (newTime === 0) {
-            clearInterval(intervalId)
             gameOver()
         }
     }, 1000)
