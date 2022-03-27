@@ -37,13 +37,20 @@ function createQuestion(questionNum) {
     }
 }
 
+function displayQuestion() {
+    for (var i = 0; i < questions.length; i++) {
+        createQuestion(i)
+    }
+
+}
+
 
 function questionAnswer() {
     questionsEl.addEventListener('click', function(event) {
         if (event.target.getAttribute('class') === 'btn btn-secondary m-2') {
-        userChoice = event.target.innerHTML
-        handleQuestionAnswer(questionIndex);
-        questionIndex++
+            userChoice = event.target.innerHTML
+            handleQuestionAnswer(questionIndex);
+            questionIndex++
         }
     });
 }
@@ -83,9 +90,8 @@ function updateTimer() {
 
 function startQuiz() {
     updateTimer();
-    createQuestion(0);
+    displayQuestion();
     questionAnswer();
-
 }
 
 // // call start quiz
